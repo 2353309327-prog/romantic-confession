@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>致我最爱的人</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=elegant%20wedding%20background%20with%20soft%20lighting%20and%20flowers%20romantic%20atmosphere&image_size=landscape_16_9') no-repeat center/cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            padding: 60px;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .audio-visualizer {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            height: 100px;
+            margin: 30px 0;
+            gap: 5px;
+        }
+        
+        .bar {
+            width: 8px;
+            background: linear-gradient(to top, #e94057, #ff9a9e);
+            border-radius: 4px;
+            transition: height 0.1s ease;
+        }
+        
+        .music-control {
+            margin: 20px 0;
+        }
+        
+        .music-control p {
+            color: #666;
+            font-size: 0.9em;
+            font-style: italic;
+            margin: 0;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #e94057;
+            transform: rotate(-45deg);
+            animation: floatHeart 3s ease-in-out forwards;
+            z-index: 10;
+        }
+        
+        .floating-heart::before,
+        .floating-heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #e94057;
+            border-radius: 50%;
+        }
+        
+        .floating-heart::before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .floating-heart::after {
+            top: 0;
+            left: 10px;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                opacity: 1;
+                transform: rotate(-45deg) translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: rotate(-45deg) translateY(-100px) scale(1.5);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            color: #e94057;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        .message {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: #444;
+            font-weight: 300;
+        }
+        
+        .message p {
+            margin-bottom: 15px;
+        }
+        
+        .heart {
+            width: 100px;
+            height: 100px;
+            background: #e94057;
+            position: relative;
+            margin: 30px auto;
+            transform: rotate(-45deg);
+            animation: beat 1s infinite;
+        }
+        
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background: #e94057;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .heart::before {
+            top: -50px;
+            left: 0;
+        }
+        
+        .heart::after {
+            top: 0;
+            left: 50px;
+        }
+        
+        @keyframes beat {
+            0%, 100% {
+                transform: rotate(-45deg) scale(1);
+            }
+            50% {
+                transform: rotate(-45deg) scale(1.1);
+            }
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        button {
+            padding: 15px 40px;
+            border: 2px solid #e94057;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: normal;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: 'Georgia', serif;
+        }
+        
+        .yes-btn {
+            background: #e94057;
+            color: white;
+        }
+        
+        .yes-btn:hover {
+            background: #c23616;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(233, 64, 87, 0.3);
+        }
+        
+        .no-btn {
+            background: transparent;
+            color: #e94057;
+            position: relative;
+        }
+        
+        .no-btn:hover {
+            background: rgba(233, 64, 87, 0.1);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(233, 64, 87, 0.2);
+        }
+        
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .flower::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: #e94057;
+            border-radius: 50%;
+        }
+        
+        .flower::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 20px;
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 50%;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+        
+        .flower1 {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .flower2 {
+            top: 15%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+        
+        .flower3 {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+        
+        .flower4 {
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .message {
+                font-size: 1em;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flower flower1"></div>
+    <div class="flower flower2"></div>
+    <div class="flower flower3"></div>
+    <div class="flower flower4"></div>
+    
+    <div class="container">
+        <h1>亲爱的，我想对你说</h1>
+        <div class="message">
+            <p>当我第一次见到你的时候，我的心就被你深深吸引了。</p>
+            <p>你的笑容像阳光一样温暖，你的眼睛像星星一样明亮。</p>
+            <p>和你在一起的每一天，都是我生命中最美好的时光。</p>
+            <p>我想和你一起看日出日落，一起走过春夏秋冬。</p>
+            <p>无论未来会遇到什么困难，我都会一直陪在你身边。</p>
+            <p>你愿意做我女朋友吗？</p>
+        </div>
+        
+        <div class="heart"></div>
+        
+        <div class="audio-visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
+        <div class="music-control">
+            <p>浪漫的旋律在空气中流淌...</p>
+        </div>
+        
+        <div class="buttons">
+            <button class="yes-btn" onclick="showLove()">我愿意</button>
+            <button class="no-btn" onclick="moveNoBtn()">再考虑考虑</button>
+        </div>
+    </div>
+    
+    <script>
+        // 模拟音频可视化效果
+        function setupAudioVisualizer() {
+            const bars = document.querySelectorAll('.bar');
+            
+            function updateVisualizer() {
+                requestAnimationFrame(updateVisualizer);
+                
+                bars.forEach((bar, index) => {
+                    // 生成模拟的音频数据
+                    const time = Date.now() * 0.001 + index * 0.1;
+                    const height = (Math.sin(time) * 0.5 + 0.5) * 80 + Math.random() * 20;
+                    bar.style.height = height + 'px';
+                });
+            }
+            
+            updateVisualizer();
+        }
+        
+        function showLove() {
+            alert('太好了！我会永远爱你，珍惜你，保护你！❤️');
+            
+            // 庆祝效果
+            document.querySelector('h1').textContent = '我爱你！';
+            document.querySelector('.message').innerHTML = '<p>谢谢你给我这个机会，我会用一生来证明我的爱。</p>';
+            
+            // 添加庆祝动画
+            const container = document.querySelector('.container');
+            container.style.animation = 'none';
+            setTimeout(() => {
+                container.style.animation = 'fadeIn 1s ease-in-out';
+            }, 100);
+            
+            // 添加爱心雨效果
+            createHeartRain();
+        }
+        
+        function createHeartRain() {
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(heart);
+                
+                // 动画结束后移除
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+        
+        function moveNoBtn() {
+            const noBtn = document.querySelector('.no-btn');
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // 随机生成新位置
+            const maxX = containerRect.width - noBtn.offsetWidth;
+            const maxY = containerRect.height - noBtn.offsetHeight;
+            
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+            
+            noBtn.style.position = 'relative';
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+        
+        // 添加一些互动效果
+        document.addEventListener('mousemove', function(e) {
+            const hearts = document.querySelectorAll('.heart');
+            hearts.forEach(heart => {
+                const x = e.clientX / window.innerWidth - 0.5;
+                const y = e.clientY / window.innerHeight - 0.5;
+                heart.style.transform = `rotate(-45deg) translate(${x * 15}px, ${y * 15}px)`;
+            });
+        });
+        
+        // 页面加载完成后初始化
+        window.addEventListener('load', function() {
+            setupAudioVisualizer();
+        });
+    </script>
+</body>
+</html>
